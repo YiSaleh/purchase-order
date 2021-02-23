@@ -4,4 +4,12 @@
 
   h1{
     text-decoration: underline;
+    color: rgb(94, 92, 92);
+  }
+
+
+
+  button{
+
+    background-color: rgb(72, 127, 182);
   }

@@ -1,4 +1,22 @@
-span {
-    text-align-last: right;
-    float:right;
-  }
+ .bg-custom{
+
+  
+
+    background-color: rgb(72, 127, 182);
+  
+
+ }
+
+.navbar-brand{
+
+  color : rgb(202, 200, 200);
+}
+ .navbar{
+   padding-left: 7em;
+  
+ }
+
+ nav{
+
+  margin-bottom: 5em;
+ }
