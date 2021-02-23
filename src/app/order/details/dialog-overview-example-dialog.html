@@ -1,0 +1,112 @@
+
+<div class="container-fluid">
+
+
+<h1 mat-dialog-title>Detail form</h1>
+<div mat-dialog-content>
+
+  <!-- item name/ -->
+
+  <mat-form-field>
+    <mat-label>Item Name</mat-label>
+    <input required matInput type="text" [(ngModel)]="item">
+  </mat-form-field>
+
+<br>
+ <!-- quantity -->
+  <mat-form-field>
+    <mat-label>Quantity</mat-label>
+    <input  required matInput type="number" (change)="calculatePriceAfterDiscount()" [(ngModel)]="quantity">
+  </mat-form-field>
+
+
+  <!-- unit -->
+  <mat-form-field>
+    <mat-label>Unit</mat-label>
+    <input  required matInput type="number" (change)="calculatePriceAfterDiscount()" [(ngModel)]="unit">
+  </mat-form-field>
+
+
+
+ 
+
+
+  <!-- ------------dropdown uom--------- -->
+
+
+ <form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>UOM</mat-label>
+    <input  required type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           matInput
+           [formControl]="uomControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)='getSelectedUom($event.option.value)'>
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<!-- total price -->
+<mat-form-field>
+  <mat-label>Total price</mat-label>
+  <input matInput disabled [ngModel]="totalPrice">
+</mat-form-field>
+
+
+<div class="container-fluid">
+ <!-- discount -->
+ <mat-form-field>
+    <mat-label>Discount</mat-label>
+    <input type="number"  matInput (change)="calculatePriceAfterDiscount()" [(ngModel)]="discount">
+  </mat-form-field>
+
+  <!-- radio button discount -->
+
+  <mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="discountType" (change)="calculatePriceAfterDiscount()" >
+  <mat-radio-button class="example-radio-button" *ngFor="let discount of discounts"   [value]="discount">
+    {{discount}}
+  </mat-radio-button>
+  </mat-radio-group>
+</div>
+ 
+
+
+
+
+  <!-- ------output------ -->
+
+
+
+  <mat-form-field>
+    <mat-label>Price after discount</mat-label>
+    <input matInput disabled [(ngModel)]="priceAfterDiscount">
+  </mat-form-field>
+
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <button class="btn btn-danger btn-block" mat-button (click)="onNoClick()">cancel</button>
+    </div>
+    <div class="col-sm-6">
+      <button class="btn btn-success  btn-block" mat-button [mat-dialog-close]="onSaveClick()" cdkFocusInitial>Save</button>
+    </div>
+  </div>
+
+<div  mat-dialog-actions>
+  
+
+</div>
+
+</div>

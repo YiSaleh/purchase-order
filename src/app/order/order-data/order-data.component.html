@@ -1,0 +1,96 @@
+<div class="container ">
+  <h1>Purshase Order</h1>
+  
+  <div class="container justify-content-center">
+    <div class="row">
+      <div class="col-sm">
+        <mat-form-field class="example-full-width">
+          <mat-label>Category</mat-label>
+          <label for="auto1"></label>       
+          <input type="text"
+                 placeholder="Pick one"
+                 aria-label="Number"
+                 matInput
+                 [formControl]="categoryControl"
+                 [matAutocomplete]="auto1">
+          <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete"  (optionSelected)='getSelectedCategory($event.option.value)'>
+            <mat-option *ngFor="let option of filteredCategoryOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <mat-form-field class="example-full-width">
+          <mat-label>Brand</mat-label>
+          <input type="text"
+                 placeholder="Pick one"
+                 aria-label="Number"
+                 matInput
+                 [formControl]="brandControl"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"  (optionSelected)='getSelectedBrand($event.option.value)'>
+            <mat-option *ngFor="let option of filteredBrandOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+     
+    </div>
+      
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field class="example-form-field">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" pattern=": [a-zA-Z] " title="Name should be letters only" [(ngModel)]="nameValue">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+  
+        </div>
+      </div>
+      
+      
+  <br>
+  <div class="row">
+    <div class="col-sm">
+      <mat-form-field class="example-full-width">
+        <mat-label>SKU</mat-label>
+        <input matInput type="text" [(ngModel)]="skuValue">
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="col-sm">
+      <mat-form-field class="example-full-width">
+        <mat-label>Barcode</mat-label>
+        <input matInput type="text"
+         [(ngModel)]="barcodeValue">
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  
+  </div>
+  </div>
+  
+
+
+</div>
+
+<br>
+
+<app-details (saveClicked)="saveDetails($event)"></app-details>
+<p *ngIf="isDataSaved"> Data saved </p>
+
+<br>
+
+<div class="container">
+  <button  type="button" class="btn btn-secondary" (click)="savePurchaseData()">Save</button>
+    <button type="button" class="btn btn-secondary"(click)="exitPurchaseData()">Save and Exit</button>
+</div>
+  
